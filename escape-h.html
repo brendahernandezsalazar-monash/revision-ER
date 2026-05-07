@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Escape Room</title>
+    <link rel="stylesheet" href="escape-h.css?v=1" />
+  </head>
+
+  <body class="escape no-copy">
+    <header class="topbar">
+      <img class="title-img" src="assets/title_betrayed_anatomist.png" alt="The Betrayed Anatomist" />
+    </header>
+
+    <main class="shell">
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar">
+        <h2 class="side-title">Status</h2>
+
+        <div class="stat-block">
+          <div class="stat-label" id="playerLabel">Life Points</div>
+          <div class="bar" aria-label="Life points">
+            <div class="bar-fill" id="lifeFill"></div>
+            <div class="bar-text" id="lifeText">250</div>
+          </div>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-label">Timer</div>
+          <div class="timer" id="timerText">30:00</div>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-label">Progress</div>
+          <div class="bar" aria-label="Progress">
+            <div class="bar-fill" id="progFill"></div>
+            <div class="bar-text" id="progText">0 / 7</div>
+          </div>
+        </div>
+
+        <p class="side-note" id="sideNote"></p>
+      </aside>
+
+      <!-- MAIN CONTENT -->
+      <section class="main">
+        <div class="panel" id="panel">
+          <!-- JS renders either HUB view or RIDDLE view here -->
+        </div>
+      </section>
+    </main>
+
+    <script src="escape-h.js?v=1"></script>
+  </body>
+</html>

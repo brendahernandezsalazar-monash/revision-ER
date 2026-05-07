@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hard Mode - Protocols</title>
+    <link rel="stylesheet" href="hard.css?v=1" />
+  </head>
+
+  <body class="page">
+    <header class="topbar">
+      <img
+        class="title-img"
+        src="assets/title_betrayed_anatomist.png"
+        alt="The Betrayed Anatomist"
+      />
+    </header>
+
+    <main class="wrap">
+      <section class="panel">
+        <h1 class="page-title">Asylum Protocols: A Guide for the Uninitiated</h1>
+        <p class="page-subtitle">Read these instructions carefully. Your survival depends on it.</p>
+
+        <!-- Tabs -->
+        <nav class="tabs" aria-label="Protocols tabs">
+          <button class="tab active" type="button" data-tab="goal" aria-selected="true">
+            ◎ The Goal
+          </button>
+          <button class="tab" type="button" data-tab="controls" aria-selected="false">
+            🎮 Controls
+          </button>
+          <button class="tab" type="button" data-tab="scoring" aria-selected="false">
+            ⚠ Scoring &amp; Penalties
+          </button>
+        </nav>
+
+        <!-- Content -->
+        <div class="tab-content">
+          <!-- GOAL -->
+          <section class="tab-panel active" id="tab-goal" data-panel="goal">
+            <h2 class="section-title">Free the Spirit</h2>
+
+            <p class="text">
+              Your primary objective is to solve a series of anatomical puzzles within <strong>30 minutes</strong>
+              to find the key that unlocks the anatomist's chains. Each solved puzzle brings you one step closer
+              to setting his spirit free and escaping this cursed asylum.
+            </p>
+
+            <p class="text">
+              Navigate the asylum using the map, investigate medical records, and submit your answers to progress.
+              Be quick, for the spirit's rage grows with every passing minute.
+            </p>
+          </section>
+
+          <!-- CONTROLS -->
+          <section class="tab-panel" id="tab-controls" data-panel="controls">
+            <h2 class="section-title">Interacting with Your Environment</h2>
+
+            <ul class="list">
+              <li><strong>Text Input:</strong> Type your answer (the letter or the number) here. Case does not matter.</li>
+              <li><strong>Submit Answer:</strong> Click this to check your text-based answer.</li>
+              <li><strong>No Hints:</strong> In this unforgiving place, you are on your own. No hints are available.</li>
+              <li><strong>Asylum Map:</strong> Your guide through the asylum. Blue nodes are unlocked puzzles, green are solved, and grey are still locked. Click a blue node to begin.</li>
+            </ul>
+
+            <div class="challenge">
+              <h3 class="challenge-title">Interactive Challenge: Test Your Wits</h3>
+              <p class="text">
+                The button to submit your findings is vital. Which of the buttons below is used to submit a text answer?
+              </p>
+
+              <div class="mini-buttons">
+                <button class="mini mini-hint" type="button" disabled>Request a Hint</button>
+                <button class="mini mini-map" type="button" disabled>View Map</button>
+                <button class="mini mini-submit" type="button" disabled>Submit Answer</button>
+              </div>
+            </div>
+          </section>
+
+          <!-- SCORING -->
+          <section class="tab-panel" id="tab-scoring" data-panel="scoring">
+            <h2 class="section-title">The Price of Failure</h2>
+
+            <ul class="list">
+              <li><strong>Starting Sanity:</strong> You begin with 250 points. Guard them well.</li>
+              <li><strong>Correct Answer:</strong> Solving a puzzle earns you +100 points.</li>
+              <li><strong>Incorrect Answer:</strong> Each mistake enrages the spirit, costing you a severe -100 points.</li>
+              <li><strong>No Hints:</strong> You will find no help in these halls.</li>
+              <li><strong>Time Bonus:</strong> Escape quickly to earn a bonus based on your remaining time.</li>
+            </ul>
+
+            <p class="text strong">
+              If your score reaches zero, your mind is lost to the asylum forever. The game ends.
+            </p>
+          </section>
+        </div>
+
+        <!-- Begin -->
+        <div class="begin-wrap">
+          <a class="begin-btn" href="escape-h.html">▶ I Understand. Let's Begin!</a>
+        </div>
+      </section>
+    </main>
+
+    <script src="hard.js?v=1"></script>
+  </body>
+</html>

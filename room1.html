@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Select Difficulty</title>
+    <link rel="stylesheet" href="room1.css?v=1" />
+  </head>
+
+  <body class="page">
+    <header class="topbar">
+      <img
+        class="title-img"
+        src="assets/title_betrayed_anatomist.png"
+        alt="The Betrayed Anatomist"
+      />
+      <div class="subtitle">Choose Your Fate</div>
+    </header>
+
+    <main class="wrap">
+      <section class="panel">
+        <h1 class="big-title">Select Difficulty</h1>
+
+        <p id="introLine" class="intro">
+          You have to decide how to face the asylum's torment, choose wisely, as your decision is final.
+        </p>
+
+        <div class="cards">
+          <!-- EASY -->
+          <article class="card">
+            <h2 class="mode-title">Easy Mode</h2>
+            <p class="mode-desc">A slightly more forgiving descent into madness.</p>
+
+            <div class="bullets">
+              <div><strong>45 Minutes</strong></div>
+              <div>Hints are available.</div>
+              <div>Incorrect answers are penalized moderately.</div>
+            </div>
+
+            <a class="btn btn-easy" href="easy.html">
+              Choose Easy
+            </a>
+          </article>
+
+          <!-- HARD -->
+          <article class="card">
+            <h2 class="mode-title">Hard Mode</h2>
+            <p class="mode-desc">For those who wish to truly challenge the spirit.</p>
+
+            <div class="bullets">
+              <div><strong>30 Minutes</strong></div>
+              <div>No hints are available.</div>
+              <div>Mistakes will be severely punished.</div>
+            </div>
+
+            <a class="btn btn-hard" href="hard.html">
+              Choose Hard
+            </a>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script src="room1.js?v=1"></script>
+  </body>
+</html>
