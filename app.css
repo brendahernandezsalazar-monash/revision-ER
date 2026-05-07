@@ -352,6 +352,12 @@ p {
   overflow: hidden;
 }
 
+.city-map.debug-enabled {
+  cursor: crosshair;
+  outline: 2px dashed rgba(212, 176, 114, 0.72);
+  outline-offset: -10px;
+}
+
 .map-image {
   display: block;
   width: 100%;
