@@ -51,8 +51,8 @@ const ROOM_DATA = [
         ],
       },
     ],
-    avatarX: "32.5%",
-    avatarY: "68%",
+    avatarX: "42.9%",
+    avatarY: "49.3%",
     avatarSize: "80px",
   },
   {
@@ -98,8 +98,8 @@ const ROOM_DATA = [
         ],
       },
     ],
-    avatarX: "28.4%",
-    avatarY: "81.5%",
+    avatarX: "47.5%",
+    avatarY: "45.8%",
     avatarSize: "80px",
   },
   {
@@ -189,8 +189,8 @@ const ROOM_DATA = [
         answer: "Histamine, gastrin, and acetylcholine",
       },
     ],
-    avatarX: "29.6%",
-    avatarY: "75.7%",
+    avatarX: "44.2%",
+    avatarY: "46.7%",
     avatarSize: "80px",
   },
   {
@@ -371,8 +371,8 @@ const ROOM_DATA = [
           "Decreased venous return lowers cardiac output and arterial pressure, reducing baroreceptor firing; this increases sympathetic activity, raising heart rate, contractility, arteriolar tone, and venous tone.",
       },
     ],
-    avatarX: "37.4%",
-    avatarY: "55.9%",
+    avatarX: "31.4%",
+    avatarY: "60.4%",
     avatarSize: "80px",
   },
   {
@@ -503,6 +503,12 @@ const els = {
   finalHintList: document.getElementById("finalHintList"),
   mapAvatar: document.getElementById("mapAvatar"),
   mapAvatarImg: document.getElementById("mapAvatarImg"),
+  cityMap: document.getElementById("cityMap"),
+  mapImage: document.querySelector(".map-image"),
+  mapDebugPanel: document.getElementById("mapDebugPanel"),
+  mapDebugTarget: document.getElementById("mapDebugTarget"),
+  mapDebugCoords: document.getElementById("mapDebugCoords"),
+  mapDebugPercents: document.getElementById("mapDebugPercents"),
   roomAvatar: document.getElementById("roomAvatar"),
   roomAvatarImg: document.getElementById("roomAvatarImg"),
   roomSceneImage: document.getElementById("roomSceneImage"),
@@ -670,6 +676,12 @@ function bindEvents() {
   document.querySelectorAll("[data-restart-game]").forEach((button) => {
     button.addEventListener("click", resetProgress);
   });
+  if (DEBUG_MODE && els.cityMap) {
+    els.cityMap.addEventListener("click", handleMapDebugClick);
+  }
+  if (DEBUG_MODE && els.mapDebugTarget) {
+    els.mapDebugTarget.addEventListener("change", renderMapDebugPanel);
+  }
   if (DEBUG_MODE && els.roomStage) {
     els.roomStage.addEventListener("click", handleDebugStageClick);
   }
@@ -761,6 +773,8 @@ function renderMap() {
     button.classList.toggle("blocked", blocked);
     button.classList.toggle("locked", blocked);
   });
+
+  renderMapDebugPanel();
 }
 
 function renderRoom(roomId) {
@@ -1233,6 +1247,69 @@ function renderDebugPanel(room) {
   els.roomStage.classList.add("debug-enabled");
   els.debugRoomName.textContent = room.name;
   updateDebugReadout(room);
+}
+
+function renderMapDebugPanel() {
+  if (!els.mapDebugPanel || !els.cityMap) {
+    return;
+  }
+
+  if (!DEBUG_MODE) {
+    els.mapDebugPanel.hidden = true;
+    els.cityMap.classList.remove("debug-enabled");
+    return;
+  }
+
+  els.mapDebugPanel.hidden = false;
+  els.cityMap.classList.add("debug-enabled");
+  updateMapDebugReadout();
+}
+
+function handleMapDebugClick(event) {
+  if (!DEBUG_MODE || !els.cityMap || !els.mapImage) {
+    return;
+  }
+
+  if (event.target.closest(".map-hotspot")) {
+    return;
+  }
+
+  const targetId = els.mapDebugTarget?.value || "warehouse";
+  const hotspot = mapButtons.find((button) => button.dataset.roomId === targetId);
+  if (!hotspot) {
+    return;
+  }
+
+  const rect = els.mapImage.getBoundingClientRect();
+  const x = Math.max(0, Math.min(rect.width, event.clientX - rect.left));
+  const y = Math.max(0, Math.min(rect.height, event.clientY - rect.top));
+  const xPercent = `${((x / rect.width) * 100).toFixed(1)}%`;
+  const yPercent = `${((y / rect.height) * 100).toFixed(1)}%`;
+
+  hotspot.style.setProperty("--x", xPercent);
+  hotspot.style.setProperty("--y", yPercent);
+  updateMapDebugReadout(rect.width, rect.height);
+}
+
+function updateMapDebugReadout(widthOverride, heightOverride) {
+  if (!els.mapDebugCoords || !els.mapDebugPercents || !els.mapDebugTarget || !els.mapImage) {
+    return;
+  }
+
+  const hotspot = mapButtons.find((button) => button.dataset.roomId === els.mapDebugTarget.value);
+  if (!hotspot) {
+    return;
+  }
+
+  const xPercent = hotspot.style.getPropertyValue("--x") || "0%";
+  const yPercent = hotspot.style.getPropertyValue("--y") || "0%";
+  const imageWidth = widthOverride || els.mapImage.clientWidth || 1280;
+  const imageHeight = heightOverride || els.mapImage.clientHeight || 1280;
+  const xPx = Math.round((parseFloat(xPercent) / 100) * imageWidth);
+  const yPx = Math.round((parseFloat(yPercent) / 100) * imageHeight);
+
+  els.mapDebugCoords.textContent = `x: ${xPx}, y: ${yPx}`;
+  els.mapDebugPercents.textContent = `x: ${xPercent}, y: ${yPercent}`;
 }
 
 function handleDebugStageClick(event) {
