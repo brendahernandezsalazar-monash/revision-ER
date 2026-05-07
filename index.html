@@ -143,6 +143,32 @@
                   <ul id="hintList" class="hint-list"></ul>
                 </div>
 
+                <div id="mapDebugPanel" class="sidebar-card debug-panel" hidden>
+                  <p class="meta-label">Map Debug</p>
+                  <div class="sidebar-block">
+                    <span>Selected location</span>
+                    <select id="mapDebugTarget" class="dropdown-field">
+                      <option value="warehouse">Warehouse</option>
+                      <option value="cave">Cave</option>
+                      <option value="fightclub">Fightclub</option>
+                      <option value="pub">Pub</option>
+                      <option value="docks">Docks</option>
+                    </select>
+                  </div>
+                  <div class="sidebar-block">
+                    <span>Pixel coordinates</span>
+                    <strong id="mapDebugCoords">x: -, y: -</strong>
+                  </div>
+                  <div class="sidebar-block">
+                    <span>Percent coordinates</span>
+                    <strong id="mapDebugPercents">x: -, y: -</strong>
+                  </div>
+                  <p class="debug-note">
+                    Click on the map image to move the selected location button. Keep the percentage values for the
+                    final hotspot positions.
+                  </p>
+                </div>
+
                 <button
                   class="image-btn sidebar-restart-btn"
                   type="button"
